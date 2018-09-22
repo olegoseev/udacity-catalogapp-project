@@ -4,6 +4,8 @@
 <img src="img/CatalogApp.png"
      alt="CatalogApp screenshot"
      width=640px; />
+
+[thecatalogproject.org](https://thecatalogproject.org)
 ## Table of Contents
 
 + [Description](#description)
@@ -114,16 +116,20 @@ sudo ufw enable
 From now on use port 2200 when ssh to the instance
 +  #### Create a new user
 
-Add user named **grader** to the server and give it **sudo** privilege
+Add user named _**grader**_ to the server and give it _**sudo**_ privilege
 ```
 sudo adduser grader
 sudo usermod -aG sudo grader
+```
+In order to let run _sudo_ command without enter the password created a file named _grader_ in _/etc/sudoers.d_ with following content:
+```
+grader ALL=(ALL) NOPASSWD:ALL
 ```
 Generate SSH key pair, so the user can log in to the server
 ```
 ssh-keygen -t rsa -C "grader@udacity.com"
 ``` 
-Add the public key to the **authorized_key** file
+Add the public key to the _**authorized_key**_ file
 ```
 su grader
 cd ~/
