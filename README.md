@@ -21,7 +21,7 @@
 
 ## Description
 
-This projct is a part of Udacity Full Stack Web Developer Nanodegree program. In this project we are going to deply **CatalogApp** Flask application on publicly accessible linux server. Original **CatalogApp** was storing data in the **SQLite** database. In this project we are going to use [PostgreSQL](https://www.postgresql.org/) as a data storage.
+This projct is a part of Udacity Full Stack Web Developer Nanodegree program. In this project we are going to deply [**CatalogApp**](https://github.com/olegoseev/CatalogApp) Flask application on publicly accessible linux server. Original [**CatalogApp**](https://github.com/olegoseev/CatalogApp) was storing data in the [**SQLite**](https://www.sqlite.org/index.html) database. In this project we are going to use [**PostgreSQL**](https://www.postgresql.org/) as a data storage.
 
 ## Requirements
 
@@ -193,7 +193,7 @@ In this directory we will keep wsgi file, python virtual environment and the app
 + #### Clone CatalogApp repository
 Clone CatalogApp repository to _app_ directory inside of the _catalog_ directory
 ```
-sudo git clone git
+sudo git clone git://github.com/olegoseev/CatalogApp.git app
 ```
 Take the ownership of _catalog_ directory.
 ```
