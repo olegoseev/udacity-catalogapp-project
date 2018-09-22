@@ -5,7 +5,9 @@
      alt="CatalogApp screenshot"
      width=640px; />
 
-[thecatalogproject.org](https://thecatalogproject.org)
+URL: [thecatalogproject.org](https://thecatalogproject.org)
+
+Server public IP: 54.213.163.255
 ## Table of Contents
 
 + [Description](#description)
