@@ -21,17 +21,17 @@
 
 ## Description
 
-This projct is a part of Udacity Full Stack Web Developer Nanodegree program. In this project we are going to deply [**CatalogApp**](https://github.com/olegoseev/CatalogApp) Flask application on publicly accessible linux server. Original [**CatalogApp**](https://github.com/olegoseev/CatalogApp) was storing data in the [**SQLite**](https://www.sqlite.org/index.html) database. In this project we are going to use [**PostgreSQL**](https://www.postgresql.org/) as a data storage.
+This project is a part of Udacity Full Stack Web Developer Nanodegree program. In this project we are going to deploy [**CatalogApp**](https://github.com/olegoseev/CatalogApp) Flask application on publicly accessible linux server. Original [**CatalogApp**](https://github.com/olegoseev/CatalogApp) was storing data in the [**SQLite**](https://www.sqlite.org/index.html) database. In this project we are going to use [**PostgreSQL**](https://www.postgresql.org/) as a data storage.
 
 ## Requirements
 
 Software being used in this project:
-+ Linux server: Ubuntu 16.04 Xenial on [Aamazon EC2 web service](https://aws.amazon.com/ec2/)
++ Linux server: Ubuntu 16.04 Xenial on [Amazon EC2 web service](https://aws.amazon.com/ec2/)
 + [Apache2 HTTP server](https://httpd.apache.org/)
 + [PostgreSQL](https://www.postgresql.org/)
 + [Python > 3.5](https://www.python.org/)
 + Python modules
-  + [Flask (a python microframework)](http://flask.pocoo.org/)
+  + [Flask (a python micro-framework)](http://flask.pocoo.org/)
   + flask_httpauth
   + [SqlAlchemy (SQL/ORM tool)](http://www.sqlalchemy.org/)
   + passlib
@@ -44,14 +44,14 @@ Software being used in this project:
 ## Setup
 
 ### Linux server
-For this project I choose Ubuntu 16.04 Xenial t2.micro instance on Amazon EC2 web service to host **CatalogApp** web application. After the instance was launched follwoing steps were taken to configure the server and make it ready to host our application:
+For this project I choose Ubuntu 16.04 Xenial t2.micro instance on Amazon EC2 web service to host _CatalogApp_ web application. After the instance was launched following steps were taken to configure the server and make it ready to host our application:
 
 + #### Update all currently installed packages
 ```
 sudo apt-get update
 sudo apt-get upgrade
 ```
-Set timzone to UTC. In opened window select _**None of the above**_ then find UTC
+Set timezone to UTC. In opened window select _**None of the above**_ then find UTC
 ```
 sudo dpkg-reconfigure tzdata
 ```
@@ -77,7 +77,7 @@ Configure AWS instance security group inbound rules as follow:
 
 ![AWS instance security group](./img/inbound_ports_600.png)
 
-Login in the instanse and hange default ssh port, edit configuration file:
+Login in the instance and change default ssh port, edit configuration file:
 ```
 $sudo nano /etc/ssh/sshd_config
 ```
@@ -111,10 +111,10 @@ Enable firewall
 ```
 sudo ufw enable
 ```
-From now on use port 2200 when ssh to the instanse
+From now on use port 2200 when ssh to the instance
 +  #### Create a new user
 
-Add user named **grader** to the server and give it **sudo** privelege
+Add user named **grader** to the server and give it **sudo** privilege
 ```
 sudo adduser grader
 sudo usermod -aG sudo grader
@@ -131,7 +131,7 @@ mkdir .ssh
 touch .ssh/authorized_keys
 nano .ssh/authorized_keys
 ```
-Copy contents of the public key to authorized_keys file. Set file permissions with folloing commands:
+Copy contents of the public key to authorized_keys file. Set file permissions with following commands:
 ```
 chmod 600 .ssh/authorized_keys
 chmod 700 .ssh
@@ -139,7 +139,7 @@ chmod 700 .ssh
 [(back to top)](#deploy-a-flask-web-application-on-a-linux-server)
 
 ### PostgreSQL
-Ubuntu default repositories contain Postgres packages, so it can be installed using the apt packagins system
+Ubuntu default repositories contain Postgres packages, so it can be installed using the apt packaging system
 ```
 sudo apt-get update
 sudo apt-get install postgresql postgresql-contrib
@@ -169,8 +169,8 @@ local   catalog     catalog               md5
 [(back to top)](#deploy-a-flask-web-application-on-a-linux-server)
 ## Deploy application
 ### CatalogApp
-In this step we will create directory structure for the application in and setup Python virtual environement.
-Dirctory structure will be looking like this:
+In this step we will create directory structure for the application in and setup Python virtual environment.
+Directory structure will be looking like this:
 ```
 /var
 |....www
@@ -241,7 +241,7 @@ Setting up a virtual environment will keep the application and its dependencies 
 
 + #### Setup Python virtual environment
 
-Navigate in _catalog_ direcotry
+Navigate in _catalog_ directory
 ```
 cd /var/www/catalog
 ```
@@ -258,8 +258,8 @@ Activate the virtual environment
 ```
 source venv/bin/activate
 ```
-Now it is time to insall Python packages needed to run our application. While the virtual environemnt is active all the Python packages will be installed in it.
-**Note:** command _sudo pip3 install [package]_ will install Python package globaly. In order to install packages inside of the virtual environment we need to use _pip install [package]_ without _sudo_.
+Now it is time to install Python packages needed to run our application. While the virtual environment is active all the Python packages will be installed in it.
+**Note:** command _sudo pip3 install [package]_ will install Python package globally. In order to install packages inside of the virtual environment we need to use _pip install [package]_ without _sudo_.
 ```
 pip3 install flask
 pip3 install sqlalchemy
@@ -277,7 +277,7 @@ deactivate
 [(back to top)](#deploy-a-flask-web-application-on-a-linux-server)
 ### Apache HTTP
 + #### Configure and Enable a New Virtual Host
-Create a new virtual host configuration file by executing folloing command:
+Create a new virtual host configuration file by executing following command:
 ```
 sudo nano /etc/apache2/sites-available/catalog.conf
 ```
@@ -312,7 +312,7 @@ disable default host
 sudo a2dissite default
 ```
 + #### Create wsgi file
-Apache uses the .wsgi file to serve the Flask application. Navigate to the folder _catalog_ and create a file named _catalog.wsgi_ with folloing command:
+Apache uses the .wsgi file to serve the Flask application. Navigate to the folder _catalog_ and create a file named _catalog.wsgi_ with following command:
 ```
 sudo nano catalog.wsgi
 ```
@@ -344,15 +344,15 @@ Restart Apache HTTP server to launch the application with following command:
 ```
 sudo service apache2 restart
 ```
-Now we should be able to access to the application via a browser using the instanse public IP
+Now we should be able to access to the application via a browser using the instance public IP
 
 [(back to top)](#deploy-a-flask-web-application-on-a-linux-server)
 ## SSL
-At this point we have successfully deploed CatalogApp on Amazon Web Service. The application is accessible via the browser using HTTP protocol. The major donwside of it is that Facebook login api will not work. Facebook authentication api dropped support authentication requests coming from websites without SSL encryption. In order to enable SSL for our web application we need to register a domain name. To register a new domain we are going to use AWS Route 53 DNS. For this projct I registered _thecatalogproject.org_ domain name.
+At this point we have successfully deployed CatalogApp on Amazon Web Service. The application is accessible via the browser using HTTP protocol. The major downside of it is that Facebook login api will not work. Facebook authentication api dropped support authentication requests coming from websites without SSL encryption. In order to enable SSL for our web application we need to register a domain name. To register a new domain we are going to use AWS Route 53 DNS. For this project I registered _thecatalogproject.org_ domain name.
 
 To obtain SSL certificate for a newly registered domain name we used [**cerbot**](https://certbot.eff.org/lets-encrypt/ubuntuxenial-apache). Cerbot enables HTTPS on the website deploying Let's Encrypt certificates.
 
-Since HTTPS protocol uses port 443, HTTP port 80 needs to be disables in the server firewall and AWS instanse security group
+Since HTTPS protocol uses port 443, HTTP port 80 needs to be disables in the server firewall and AWS instance security group
 
 ## License
 
